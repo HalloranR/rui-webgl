@@ -135,7 +135,7 @@
       xmlHttp.open("GET", 'https://ccf-api.hubmapconsortium.org/v1/scene', false); // false for synchronous request
       xmlHttp.send(null);
 
-      //console.log(xmlHttp.responseText);
+      //console.log(typeof xmlHttp.responseText);
 
       //send data to unity
       myGameInstance.SendMessage('JSBridge', 'RecieveMessageFromHTML', xmlHttp.responseText);

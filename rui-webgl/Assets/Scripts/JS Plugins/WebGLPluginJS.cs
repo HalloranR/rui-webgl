@@ -9,4 +9,7 @@ public class WebGLPluginJS : MonoBehaviour {
     // Importing "CallFunction"
     [DllImport("__Internal")]
     public static extern void DisplayNodeArray(NodeArray nodeArr);
+
+    [DllImport("__Internal")]
+    public static extern void DisplayNodeData(string str);
 }

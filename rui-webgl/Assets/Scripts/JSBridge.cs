@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class JSBridge : MonoBehaviour
 {
-    private DataManager dataManager;
+    [SerializeField] private DataManager dataManager;
 
     public void RecieveMessageFromHTML(string webStr)
     {
+        WebGLPluginJS.DisplayNodeData("Start");
+
         NodeArray nodeArray = dataManager.Deserialize(webStr);
 
-        WebGLPluginJS.DisplayNodeArray(nodeArray);
+        //WebGLPluginJS.DisplayNodeArray(nodeArray);
+
+        WebGLPluginJS.DisplayNodeData("Marshal Error?");
     }
 }

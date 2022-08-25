@@ -3,6 +3,11 @@
 mergeInto(LibraryManager.library, {
 
    DisplayNodeArray: function (nodeArr) {
-      console.log(nodeArr);
+      console.log(Pointer_stringify(nodeArr));
+   },
+
+   DisplayNodeData: function (str){
+   console.log("Now displaying node data:");
+      console.log(Pointer_stringify(str));
    }
 });
