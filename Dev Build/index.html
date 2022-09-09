@@ -23,6 +23,13 @@
         <div id="unity-build-title">rui-webgl</div>
       </div>
     </div>
+
+    <div class="message-form centered">
+      <h2>Message for Unity</h2>
+      <button onclick="sendMessageToUnity()">Send</button>
+    </div>
+
+
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -103,10 +110,12 @@
 
       var script = document.createElement("script");
       script.src = loaderUrl;
+      var myGameInstance2 = null;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
+          myGameInstance2 = unityInstance
           console.log('1',unityInstance.canvas)
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
@@ -117,6 +126,19 @@
         });
       };
       document.body.appendChild(script);
+
+
+      function sendMessageToUnity(){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://ccf-api.hubmapconsortium.org/v1/scene", false ); // false for synchronous request
+        xmlHttp.send( null );
+        var jsonString = xmlHttp.responseText
+
+        console.log(jsonString)
+
+        myGameInstance2.SendMessage("JSBridge", "RecieveMessageFromHTML", jsonString);
+      }
+
     </script>
   </body>
 </html>

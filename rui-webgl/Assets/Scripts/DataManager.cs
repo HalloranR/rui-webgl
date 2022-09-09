@@ -11,6 +11,7 @@ public class DataManager : MonoBehaviour
 
     public NodeArray Deserialize(string str)
     {
+        Debug.Log(str);
         //format the string
         var text = str
         .Replace("@id", "jsonLdId")
@@ -23,6 +24,8 @@ public class DataManager : MonoBehaviour
         text
         + "}"
         );
+
+        Debug.Log(_nodeArray);
 
         return _nodeArray;
     }
