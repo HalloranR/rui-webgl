@@ -1,4 +1,6 @@
 //custom class
+var myGameInstance = null;
+
 class UnityComp extends HTMLElement {
     constructor() {
       super();
@@ -101,7 +103,6 @@ class UnityComp extends HTMLElement {
   
       var script = document.createElement("script");
       script.src = loaderUrl;
-      var myGameInstance = null;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
@@ -117,8 +118,23 @@ class UnityComp extends HTMLElement {
       };
       root.appendChild(script);
     }
+
+    listen(el) {
+      el.addEventListener('click', function (){
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://ccf-api.hubmapconsortium.org/v1/scene", false ); // false for synchronous request
+        xmlHttp.send( null );
+        var jsonString = xmlHttp.responseText
+
+        console.log("Here");
+
+        myGameInstance.SendMessage("JSBridge", "SetScene", jsonString);
+      })
+    }
   }
+
+//define the class and use it
+window.customElements.define('unity-comp', UnityComp)
   
+document.querySelector('unity-comp').listen(document.getElementById('sendJson'))
   
-  //define the class and use it
-  window.customElements.define('unity-comp', UnityComp)

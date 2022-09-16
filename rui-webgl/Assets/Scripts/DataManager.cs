@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public class DataManager : MonoBehaviour
 {
+    //node array
     private NodeArray _nodeArray;
 
     public NodeArray Deserialize(string str)

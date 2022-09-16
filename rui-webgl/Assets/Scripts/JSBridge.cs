@@ -5,6 +5,7 @@ using UnityEngine;
 public class JSBridge : MonoBehaviour
 {
     [SerializeField] private DataManager dataManager;
+    [SerializeField] private SceneSetter sceneSetter;
 
     public void SetScene(string webStr)
     {
@@ -17,21 +18,19 @@ public class JSBridge : MonoBehaviour
         //WebGLPluginJS.DisplayNodeArray(nodeArray);
     }
 
-
+    public void SetRotationX(float rotationX)
+    {
+        sceneSetter.SetCameraRotationX(rotationX);
+    }
 
     public void SetRotationY(float rotationY)
     {
-
-    }
-
-    public void SetRotationX(float rotationX)
-    {
-
+        sceneSetter.SetCameraRotationY(rotationY);
     }
 
     public void SetZoom(float zoom)
     {
-
+        sceneSetter.SetCameraZoom(zoom);
     }
 
     public void SetTarget(int value)
