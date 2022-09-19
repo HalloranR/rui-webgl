@@ -7,6 +7,7 @@ public class JSBridge : MonoBehaviour
     [SerializeField] private DataManager dataManager;
     [SerializeField] private SceneSetter sceneSetter;
 
+                //Inputs\\
     public void SetScene(string webStr)
     {
         WebGLPluginJS.DisplayNodeData("Start");
@@ -15,7 +16,7 @@ public class JSBridge : MonoBehaviour
 
         WebGLPluginJS.DisplayNodeData("Marshal Error?");
 
-        //WebGLPluginJS.DisplayNodeArray(nodeArray);
+        WebGLPluginJS.DisplayNodeArray(nodeArray);
     }
 
     public void SetRotationX(float rotationX)
@@ -48,7 +49,39 @@ public class JSBridge : MonoBehaviour
 
     }
 
-    public void SetInteractivity(bool _interactive)
+    public void SetInteractivity(bool _interactivity)
+    {
+        sceneSetter.SetIneteractivity(_interactivity);
+    }
+
+
+                //Outputs\\
+    public void GetInitialized()
+    {
+
+    }
+
+    public void GetNodeClick()
+    {
+
+    }
+
+    public void GetNodeDrag()
+    {
+
+    }
+
+    public void GetNodeHoverStart()
+    {
+
+    }
+
+    public void GetNodeHoverStop()
+    {
+
+    }
+
+    public void GetRotationChange()
     {
 
     }

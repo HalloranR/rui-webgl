@@ -6,8 +6,38 @@ mergeInto(LibraryManager.library, {
       console.log(Pointer_stringify(nodeArr));
    },
 
-   DisplayNodeData: function (str){
+   DisplayNodeData: function (str)v{
    console.log("Now displaying node data:");
       console.log(Pointer_stringify(str));
    }
+
+
+    GetInitialized: function () {
+
+    }
+
+
+    GetNodeClick: function () {
+
+    }
+
+
+    GetNodeDrag: function () {
+
+    }
+
+
+    GetNodeHoverStart: function () {
+
+    }
+
+
+    GetNodeHoverStop: function () {
+
+    }
+
+
+    GetRotationChange: function () {
+
+    }
 });

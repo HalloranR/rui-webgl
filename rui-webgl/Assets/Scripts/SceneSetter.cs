@@ -8,6 +8,8 @@ public class SceneSetter : MonoBehaviour
     public Camera cam;
     public GameObject camObject;
 
+    public bool interactivity = true;
+
     public void SetCameraRotationX(float xRotation)
     {
         camObject.transform.Rotate(new Vector3(xRotation, cam.transform.rotation.y, cam.transform.rotation.z));
@@ -21,5 +23,10 @@ public class SceneSetter : MonoBehaviour
     public void SetCameraZoom(float zoom)
     {
         cam.fieldOfView = zoom;
+    }
+
+    public void SetIneteractivity(bool _interactivity)
+    {
+        interactivity = _interactivity;
     }
 }
