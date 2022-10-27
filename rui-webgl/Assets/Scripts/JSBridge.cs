@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class JSBridge : MonoBehaviour
 {
-    [SerializeField] private DataManager dataManager;
     [SerializeField] private SceneSetter sceneSetter;
 
-                //Inputs\\
-    public void SetScene(string webStr)
+    private string id = "placeHolder";
+
+                //Initial Setter\\
+    public void SetInstance(string _id)
     {
-        WebGLPluginJS.DisplayNodeData("Start");
-
-        NodeArray nodeArray = dataManager.Deserialize(webStr);
-
-        WebGLPluginJS.DisplayNodeData("Marshal Error?");
-
-        WebGLPluginJS.DisplayNodeArray(nodeArray);
+        id = _id;
     }
 
+                //Inputs\\
     public void SetRotationX(float rotationX)
     {
         sceneSetter.SetCameraRotationX(rotationX);
@@ -44,45 +40,32 @@ public class JSBridge : MonoBehaviour
 
     }
 
-    public void SetCamera(string camera)
+    //public void SetCamera(string camera)
+    //{
+
+    //}
+
+    public void SetInteractivity(bool _interactive)
     {
 
-    }
-
-    public void SetInteractivity(bool _interactivity)
-    {
-        sceneSetter.SetIneteractivity(_interactivity);
     }
 
 
                 //Outputs\\
     public void GetInitialized()
     {
-
+        //WebGLPluginJS.SendEvent(id, "initialized", null);
     }
 
-    public void GetNodeClick()
-    {
 
+    public void GetRotationChange(float x, float y)
+    {
+        WebGLPluginJS.DisplayNodeData("Do we get to rotation change");
+        WebGLPluginJS.SendEvent(id, "rotation", "test");
     }
 
-    public void GetNodeDrag()
+    public void GetZoomChange(float _zoom)
     {
-
-    }
-
-    public void GetNodeHoverStart()
-    {
-
-    }
-
-    public void GetNodeHoverStop()
-    {
-
-    }
-
-    public void GetRotationChange()
-    {
-
+        WebGLPluginJS.SendEvent(id, "zoom", _zoom.ToString());
     }
 }
