@@ -141,7 +141,12 @@ class UnityComp extends HTMLElement {
     this.myGameInstance.SendMessage("JSBridge", "SetInstance", this.id);
 
     //loop through attributes
-    console.log(this.observedAttributes);
+    UnityComp.observedAttributes.forEach(element => {
+
+      if(this.getAttribute(element)!==null){
+        //this.attributeChangedCallback(element, null, this.getAttribute(element));
+      }
+    });
   }
 
   listen(el) {
@@ -174,7 +179,7 @@ class UnityComp extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['bounds', 'target', 'rotation', 'camera',
+    return ['bounds', 'target', 'rotationY', 'camera',
       'rotationX', 'zoom', 'interactive', 'scene'];
   }
 
@@ -184,6 +189,7 @@ class UnityComp extends HTMLElement {
       console.log(functionName)
       if(this.myGameInstance){
         this.myGameInstance.SendMessage("JSBridge", functionName, newValue);
+        console.log("Pass the data");
       }
     }
     else{

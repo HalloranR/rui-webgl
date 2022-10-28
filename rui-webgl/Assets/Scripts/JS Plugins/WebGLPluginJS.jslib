@@ -12,15 +12,15 @@ mergeInto(LibraryManager.library, {
    },
 
    SendEvent: function (id, eventName, payload){
-      _id=Pointer_stringify(id)
+      _id=UTF8ToString(id)
       const registry = window.UNITY_BODY_UI_REGISTRY || {};
       const instance = registry[_id];
       console.log(_id);
       console.log(instance);
       if(instance){
-        const event = new CustomEvent(Pointer_stringify(eventName), { detail: payload});
-        event.payload = event;
+        const event = new CustomEvent( UTF8ToString(eventName), { detail: UTF8ToString(payload) });
         instance.dispatchEvent(event);
+        console.log(event);
         console.log("did we make it here");
       }
    }

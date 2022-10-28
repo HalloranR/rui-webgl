@@ -61,7 +61,7 @@ public class JSBridge : MonoBehaviour
     public void GetRotationChange(float x, float y)
     {
         WebGLPluginJS.DisplayNodeData("Do we get to rotation change");
-        WebGLPluginJS.SendEvent(id, "rotation", "test");
+        WebGLPluginJS.SendEvent(id, "rotationChange", "test");
     }
 
     public void GetZoomChange(float _zoom)
