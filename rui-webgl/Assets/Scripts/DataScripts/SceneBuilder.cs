@@ -31,8 +31,11 @@ public class SceneBuilder : MonoBehaviour
     private async void Start()
     {
         sceneConfiguration = GetComponent<SceneConfiguration>();
+        WebGLPluginJS.DisplayNodeData("Here1");
         await GetNodes(sceneConfiguration.BuildUrl());
-        await GetOrgans();
+        WebGLPluginJS.DisplayNodeData("Here2");
+        //await GetOrgans();
+        //WebGLPluginJS.DisplayNodeData("Here3");
     }
 
     public async Task GetNodes(string url)

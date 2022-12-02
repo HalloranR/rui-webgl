@@ -8,7 +8,17 @@ public class SceneSetter : MonoBehaviour
     public Camera cam;
     public GameObject camObject;
 
+    [Header("Interactivity")]
+    public bool interactivity;
+
+    [Header("JSBridge")]
     public JSBridge jsBridge;
+
+
+    public void SetCameraInteractivity(bool interacive)
+    {
+        interactivity = interacive;
+    }
 
     public void SetCameraRotationX(float xRotation)
     {
@@ -27,7 +37,21 @@ public class SceneSetter : MonoBehaviour
     public void SetCameraZoom(float zoom)
     {
         cam.fieldOfView = zoom;
+    }
 
-        jsBridge.GetZoomChange(cam.fieldOfView);
+    public void SetCameraType(string cameraType)
+    {
+        if (false)
+        {
+            
+        }
+        else if (false)
+        {
+
+        }
+        else
+        {
+            Debug.Log("wrong camera type");
+        }
     }
 }

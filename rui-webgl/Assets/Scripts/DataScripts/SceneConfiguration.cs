@@ -15,6 +15,7 @@ public class SceneConfiguration : MonoBehaviour
 
     public string BuildUrl()
     {
+        Debug.Log("Here");
         if (showTissueBlocksForOrgans.Count > 0)
         {
             Url = baseUrl + sexQueryString + sex + ontologyQueryString + showTissueBlocksForOrgans[0];

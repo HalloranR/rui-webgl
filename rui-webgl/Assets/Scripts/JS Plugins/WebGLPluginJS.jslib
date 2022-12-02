@@ -8,20 +8,66 @@ mergeInto(LibraryManager.library, {
 
    DisplayNodeData: function (str){
       console.log("Now displaying node data:");
-      console.log(Pointer_stringify(str));
+      console.log(UTF8ToString(str));
    },
 
    SendEvent: function (id, eventName, payload){
-      _id=UTF8ToString(id)
+      Console.log("Data has been updated");
+
+      const _id=UTF8ToString(id);
       const registry = window.UNITY_BODY_UI_REGISTRY || {};
       const instance = registry[_id];
-      console.log(_id);
-      console.log(instance);
+      const json_obj = JSON.parse(UTF8ToString(payload));
+
       if(instance){
-        const event = new CustomEvent( UTF8ToString(eventName), { detail: UTF8ToString(payload) });
-        instance.dispatchEvent(event);
-        console.log(event);
-        console.log("did we make it here");
+        const _name = UTF8ToString(eventName);
+
+        //for numbers
+        if(_name=="rotation" || _name=="rotationX" || _name=="zoom") {
+            const event = new CustomEvent( name, { detail: json_obj.num });
+            instance.dispatchEvent(event);
+        }
+        else if(_name=="camera") {
+            const event = new CustomEvent( _name, { detail: json_obj.str });
+            instance.dispatchEvent(event);
+        }
+        else if(_name=="interactivity") {
+            const event = new CustomEvent( _name, { detail: json_obj.boolean });
+            instance.dispatchEvent(event);
+        }
+        else {
+            
+        }
+      }
+   },
+
+   SendOutput: function (id, eventName, payload){
+      const _id=UTF8ToString(id);
+      const registry = window.UNITY_BODY_UI_REGISTRY || {};
+      const instance = registry[_id];
+      
+
+      if(instance){
+        const _name = UTF8ToString(eventName);
+        console.log(_name);
+
+        if(_name=="rotationChange") {
+            const json_obj = JSON.parse(UTF8ToString(payload));
+            console.log(json_obj);
+            const event = new CustomEvent( _name, { detail: [json_obj.rotationX, json_obj.rotationY] });
+            instance.dispatchEvent(event);
+        }
+        else if(_name=="initialized"){
+            console.log("Initialized?");
+            const event = new CustomEvent( _name, { detail: true });
+            instance.dispatchEvent(event);
+        }
+        else{
+            const json_obj = JSON.parse(UTF8ToString(payload));
+            console.log(json_obj);
+            const event = new CustomEvent( _name, { detail: json_obj });
+            instance.dispatchEvent(event);
+        }
       }
    }
 });
